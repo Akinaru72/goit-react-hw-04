@@ -9,6 +9,11 @@
   cursor: pointer;
   border-radius: 5px;
 }
+
+.button:focus,
+.button:active,
 .button:hover {
+  border: none;
+  outline: none;
   background-color: #2ca08c;
 }

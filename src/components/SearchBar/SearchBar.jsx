@@ -2,36 +2,24 @@ import { Formik, Form, Field } from "formik";
 import toast from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
-const SearchBar = ({ onSubmit }) => {
+export default function SearchBar({ onSearch }) {
+  const handleSubmit = (values, actions) => {
+    if (!values.query.trim()) {
+      toast.error("Please enter a search query");
+      console.log("MISTAKE");
+      return;
+    }
+    onSearch(values.query.trim());
+    actions.resetForm();
+  };
   return (
-    <Formik
-      initialValues={{ query: "" }}
-      validate={(values) => {
-        const errors = {};
-        if (!values.query.trim()) {
-          errors.query = "Please enter a search term";
-        }
-        return errors;
-      }}
-      onSubmit={(values, actions) => {
-        const searchQuery = values.query.trim();
-        console.log("Search Query:", searchQuery);
-
-        if (searchQuery.length === 0) {
-          toast.error("Please enter the value in the search field");
-          return;
-        }
-
-        onSubmit(searchQuery);
-        actions.resetForm();
-      }}
-    >
-      {({ errors, touched }) => (
+    <header>
+      <Formik initialValues={{ query: "" }} onSubmit={handleSubmit}>
         <Form className={css.form}>
           <Field
             className={css.field}
-            name="query"
             type="text"
+            name="query"
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
@@ -39,14 +27,8 @@ const SearchBar = ({ onSubmit }) => {
           <button className={css.btn} type="submit">
             Search
           </button>
-
-          {errors.query && touched.query && (
-            <div className={css.error}>{errors.query}</div>
-          )}
         </Form>
-      )}
-    </Formik>
+      </Formik>
+    </header>
   );
-};
-
-export default SearchBar;
+}

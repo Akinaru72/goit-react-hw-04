@@ -25,8 +25,8 @@
 
 .image {
   max-width: 100%;
-  max-height: 80vh; /* Оставляем место для кнопки закрытия */
-  object-fit: contain; /* Гарантирует, что изображение не выйдет за границы */
+  max-height: 80vh;
+  object-fit: contain;
 }
 
 .closeButton {
@@ -40,4 +40,20 @@
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 5;
+}
+
+.likes {
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  color: brown;
+  font-weight: bold;
+}
+
+.author {
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+  color: brown;
+  font-weight: bold;
 }

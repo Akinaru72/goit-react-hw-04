@@ -1,5 +1,6 @@
 .loader {
-  display: block;
-
-  margin-left: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* margin-left: 200px; */
 }

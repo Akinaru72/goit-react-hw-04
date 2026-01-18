@@ -1,9 +1,8 @@
 import Modal from "react-modal";
 import css from "./ImageModal.module.css";
 
-Modal.setAppElement("#root");
-
-const ImageModal = ({ isOpen, onRequestClose, imageUrl }) => {
+export default function ImageModal({ isOpen, onRequestClose, imageUrl }) {
+  if (!imageUrl) return null;
   return (
     <Modal
       isOpen={isOpen}
@@ -11,13 +10,12 @@ const ImageModal = ({ isOpen, onRequestClose, imageUrl }) => {
       className={css.modal}
       overlayClassName={css.overlay}
     >
-      <img src={imageUrl} alt="Large image" className={css.image} />
-
-      <button onClick={onRequestClose} className={css.closeButton}>
+      <img src={imageUrl.regular} alt="Large image" className={css.image} />
+      <p className={css.likes}>Likes: {imageUrl.likes}</p>
+      <p className={css.author}>Author: {imageUrl.name}</p>
+      <button className={css.closeButton} onClick={onRequestClose}>
         Close
       </button>
     </Modal>
   );
-};
-
-export default ImageModal;
+}
